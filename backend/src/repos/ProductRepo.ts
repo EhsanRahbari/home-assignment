@@ -1,6 +1,17 @@
 import { IProduct } from "@src/models/Product";
 import prisma from "./orm";
 
+async function add(product: IProduct) {
+  try {
+    const result = await prisma.product.create({
+      data: product,
+    });
+    return result;
+  } catch (error) {
+    console.error("Error in Creating Product", error);
+  }
+}
+
 async function getOne(productId: number) {
   try {
     const result = await prisma.product.findFirst({
@@ -44,9 +55,10 @@ async function deleteProduct(product: IProduct) {
         id: product.id,
       },
     });
+    return result;
   } catch (error) {
     console.error("Error in Deleting the product", error);
   }
 }
 
-export { getOne, getAll, deleteProduct, edit };
+export default { add, getOne, getAll, deleteProduct, edit } as const;

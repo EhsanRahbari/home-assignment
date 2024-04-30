@@ -1,5 +1,5 @@
 export interface IOrder {
-    id:number;
-    orderDate:Date;
-    customerId:number;
+  id: number;
+  order_date: Date;
+  customerId: number;
 }

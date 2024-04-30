@@ -1,6 +1,17 @@
 import { IOrder } from "@src/models/Order";
 import prisma from "./orm";
 
+async function add(order: IOrder) {
+  try {
+    const result = await prisma.order.create({
+      data: order,
+    });
+    return result;
+  } catch (error) {
+    console.error("Error in Creating Order", error);
+  }
+}
+
 async function getOne(orderId: number) {
   try {
     const result = prisma.order.findFirst({
@@ -44,9 +55,10 @@ async function deleteOrder(orderId: number) {
         id: orderId,
       },
     });
+    return result;
   } catch (error) {
     console.error("Error in Deleting the Order", error);
   }
 }
 
-export { getOne, getAll, editOrder, deleteOrder };
+export default { add, getOne, getAll, editOrder, deleteOrder } as const;
