@@ -34,4 +34,11 @@ export default {
     Update: "/update",
     Delete: "/delete/:id",
   },
+  OrderItem: {
+    Base: "/OrderItems",
+    Get: "/all",
+    Add: "/add",
+    Update: "/update",
+    Delete: "/delete/:id",
+  },
 } as const;
